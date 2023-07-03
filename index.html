@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Projet Hermance Louis</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script src="./scripts/jquery-3.4.1.min.js"></script>
+    <link href="./scripts/dist/jqvmap.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./scripts/dist/jquery.vmap.js"></script>
+    <script type="text/javascript" src="./scripts/dist/maps/jquery.vmap.france.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+        jQuery('#vmap').vectorMap({
+          map: 'france_fr',
+          backgroundColor: null,
+          color: '#fa8b69',
+          borderColor: '#0f0000',
+          hoverColor: '#c0dffa',
+          enableZoom: false,
+          showTooltip: false,
+          onRegionClick: function(element, code, region)
+            {
+                if (code.includes(config.departement_actuel.code)) {
+                    alert("Bien joué ! Vous avez trouvé le département " + config.departement_actuel.nom);
+                    maj_departement()
+                } else {
+                    alert("Dommage ! Vous n'avez pas trouvé le département " + config.departement_actuel.nom);
+                }
+            }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Map of France</h1>
+    <div id="vmap" style="width: 600px; height: 400px;"></div>
+
+    <div id="consigne-conteneur">
+        Trouver : <div id="departement"></div>
+    </div>
+
+    <script src='./scripts/config.js'></script>
+    <script src='./scripts/comportement.js'></script>
+  </body>
+</html>
